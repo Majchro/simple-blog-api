@@ -1,14 +1,14 @@
 <?php
 
 use App\Models\User;
-use App\Repositories\UserRepository;
+use App\Repositories\AuthenticationRepository;
 use Illuminate\Support\Facades\Password;
 use Mockery\MockInterface;
 
 it('will update password for user', function () {
     $user = User::factory()->create();
     $token = Password::createToken($user);
-    $this->mock(UserRepository::class, function (MockInterface $mock) {
+    $this->mock(AuthenticationRepository::class, function (MockInterface $mock) {
         $mock->shouldReceive('resetPassword');
     });
 

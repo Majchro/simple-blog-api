@@ -1,7 +1,7 @@
 <?php
 
 use App\Models\User;
-use App\Repositories\UserRepository;
+use App\Repositories\AuthenticationRepository;
 use Mockery\MockInterface;
 
 beforeEach(function () {
@@ -9,7 +9,7 @@ beforeEach(function () {
 });
 
 it('will authenticate user', function () {
-    $this->mock(UserRepository::class, function (MockInterface $mock) {
+    $this->mock(AuthenticationRepository::class, function (MockInterface $mock) {
         $mock->shouldReceive('login')->andReturn($this->user);
     });
 
@@ -21,7 +21,7 @@ it('will authenticate user', function () {
 });
 
 it('will return unauthorized when credentials are wrong', function () {
-    $this->mock(UserRepository::class, function (MockInterface $mock) {
+    $this->mock(AuthenticationRepository::class, function (MockInterface $mock) {
         $mock->shouldReceive('login')->andReturnNull();
     });
 

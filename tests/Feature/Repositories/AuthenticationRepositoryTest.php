@@ -1,7 +1,7 @@
 <?php
 
 use App\Models\User;
-use App\Repositories\UserRepository;
+use App\Repositories\AuthenticationRepository;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Auth;
@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Notification;
 use Illuminate\Auth\Notifications\ResetPassword;
 
 beforeEach(function () {
-    $this->user_repository = new UserRepository;
+    $this->user_repository = new AuthenticationRepository;
 });
 
 describe('create', function () {

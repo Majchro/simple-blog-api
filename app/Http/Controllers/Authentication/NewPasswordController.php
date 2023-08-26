@@ -7,18 +7,18 @@ namespace App\Http\Controllers\Authentication;
 use App\Enums\ApiResponseStatus;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Authentication\NewPasswordRequest;
-use App\Repositories\UserRepository;
+use App\Repositories\AuthenticationRepository;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
 
 class NewPasswordController extends Controller
 {
-    public function __construct(private UserRepository $user_repository)
+    public function __construct(private AuthenticationRepository $authentication_repository)
     {}
 
     public function update(NewPasswordRequest $request): JsonResponse
     {
-        $this->user_repository->resetPassword(
+        $this->authentication_repository->resetPassword(
             $request->get('token'),
             $request->get('email'),
             $request->get('password'),

@@ -1,11 +1,11 @@
 <?php
 
 use App\Models\User;
-use App\Repositories\UserRepository;
+use App\Repositories\AuthenticationRepository;
 use Mockery\MockInterface;
 
 it('can create user if client is guest', function () {
-    $this->mock(UserRepository::class, function (MockInterface $mock) {
+    $this->mock(AuthenticationRepository::class, function (MockInterface $mock) {
         $mock->shouldReceive('create')->andReturn(User::make());
     });
 

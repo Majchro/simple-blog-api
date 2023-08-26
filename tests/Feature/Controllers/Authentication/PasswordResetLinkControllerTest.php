@@ -1,10 +1,10 @@
 <?php
 
-use App\Repositories\UserRepository;
+use App\Repositories\AuthenticationRepository;
 use Mockery\MockInterface;
 
 it('will send email with password reset link', function () {
-    $this->mock(UserRepository::class, function (MockInterface $mock) {
+    $this->mock(AuthenticationRepository::class, function (MockInterface $mock) {
         $mock->shouldReceive('sendResetLink')->andReturnTrue();
     });
 
@@ -15,7 +15,7 @@ it('will send email with password reset link', function () {
 });
 
 it('will return 400 if user does not exists', function () {
-    $this->mock(UserRepository::class, function (MockInterface $mock) {
+    $this->mock(AuthenticationRepository::class, function (MockInterface $mock) {
         $mock->shouldReceive('sendResetLink')->andReturnFalse();
     });
 

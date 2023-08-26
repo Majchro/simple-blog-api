@@ -7,18 +7,18 @@ namespace App\Http\Controllers\Authentication;
 use App\Enums\ApiResponseStatus;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Authentication\LoginRequest;
-use App\Repositories\UserRepository;
+use App\Repositories\AuthenticationRepository;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
 
 class AuthenticatedSessionController extends Controller
 {
-    public function __construct(private UserRepository $user_repository)
+    public function __construct(private AuthenticationRepository $authentication_repository)
     {}
 
     public function store(LoginRequest $request): JsonResponse
     {
-        $user = $this->user_repository->login(
+        $user = $this->authentication_repository->login(
             $request->get('email'),
             $request->get('password'),
         );
