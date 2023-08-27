@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Editor;
 
 use App\Enums\ApiResponseStatus;
+use App\Enums\UserRole;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Editor\ChangeRoleRequest;
 use App\Http\Requests\Editor\UpsertUserRequest;
 use App\Models\User;
 use App\Repositories\UserRepository;
@@ -33,7 +35,7 @@ class UserController extends Controller
             name: $request->get('name'),
             email: $request->get('email'),
             password: $request->get('password'),
-            role: $request->get('role'),
+            role: $request->enum('role', UserRole::class),
         );
 
         return response()->json([
@@ -60,7 +62,7 @@ class UserController extends Controller
             name: $request->get('name'),
             email: $request->get('email'),
             password: $request->get('password'),
-            role: $request->get('role'),
+            role: $request->enum('role', UserRole::class),
             id: $id,
         );
 
@@ -74,6 +76,17 @@ class UserController extends Controller
         $user = $this->user_repository->find($id);
         $this->authorize('delete', $user);
         $this->user_repository->delete($id);
+
+        return response()->json([
+            'status' => ApiResponseStatus::Success,
+        ]);
+    }
+
+    public function changeRole(int $id, ChangeRoleRequest $request): JsonResponse
+    {
+        $user = $this->user_repository->find($id);
+        $this->authorize('update', $user);
+        $this->user_repository->changeRole($id, $request->enum('role', UserRole::class));
 
         return response()->json([
             'status' => ApiResponseStatus::Success,

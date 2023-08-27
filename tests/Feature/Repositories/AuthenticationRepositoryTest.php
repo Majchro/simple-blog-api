@@ -61,10 +61,12 @@ describe('resetPassword', function () {
 });
 
 describe('login', function () {
-    it('will return user', function () {
+    it('will authenticate and return user', function () {
         $user = User::factory()->create();
         $user = $this->user_repository->login($user->email, 'zaq1@WSX');
 
+        expect(Auth::check())
+            ->toBeTrue();
         expect($user)
             ->not->toBeNull();
     });

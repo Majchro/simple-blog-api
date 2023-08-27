@@ -44,11 +44,12 @@ class AuthenticationRepository
             'password' => $password,
         ]);
 
-        if ($is_authenticated) {
-            return Auth::user();
+        if (! $is_authenticated) {
+            return null;
         }
 
-        return null;
+        session()->regenerate();
+        return Auth::user();
     }
 
     public function sendResetLink(string $email): bool

@@ -39,7 +39,8 @@ test('[POST] store', function () {
     $this->postJson(route('editor.users.store'), [
         'name' => fake()->firstName(),
         'email' => fake()->safeEmail(),
-        'password' => 'zaq1@WSX'
+        'password' => 'zaq1@WSX',
+        'role' => UserRole::Admin,
     ])
         ->assertStatus(201);
 });
@@ -81,5 +82,17 @@ test('[DELETE] destroy', function () {
     });
 
     $this->deleteJson(route('editor.users.destroy', $this->user->id))
+        ->assertStatus(200);
+});
+
+test('[PUT] changeRole', function () {
+    $this->mock(UserRepository::class, function (MockInterface $mock) {
+        $mock->shouldReceive('find')->andReturn($this->user);
+        $mock->shouldReceive('changeRole');
+    });
+
+    $this->putJson(route('editor.users.change-role', $this->user->id), [
+        'role' => UserRole::Subscriber,
+    ])
         ->assertStatus(200);
 });

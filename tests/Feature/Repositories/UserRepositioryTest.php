@@ -38,6 +38,14 @@ describe('upsert', function () {
     });
 });
 
+it('will update role', function () {
+    $user = User::factory()->create(['role' => UserRole::Subscriber]);
+    $this->user_repository->changeRole($user->id, UserRole::Admin);
+
+    expect($user->fresh()->role)
+        ->toBe(UserRole::Admin);
+});
+
 it('will get paginated users', function () {
     $data = $this->user_repository->getPaginated();
 

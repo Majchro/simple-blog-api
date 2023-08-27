@@ -2,11 +2,13 @@
 
 use App\Models\User;
 use App\Repositories\Repository;
+use Mockery\MockInterface;
 
 beforeEach(function () {
     $this->user = User::factory()->create();
-    $model = app()->make(User::class);
-    $this->repository = $this->getMockForAbstractClass(Repository::class, [$model]);
+    $this->repository = $this->partialMock(Repository::class, function (MockInterface $mock) {
+        $mock->model = app()->make(User::class);
+    });
 });
 
 it('can find model', function () {

@@ -9,6 +9,11 @@ use Illuminate\Support\Facades\Storage;
 
 class AttachmentRepository extends Repository
 {
+    public function __construct()
+    {
+        $this->model = app()->make(Attachment::class);
+    }
+
     public static function create(User $user, UploadedFile $file): Attachment
     {
         $storage_file = Storage::disk(env('FILESYSTEM_DISK'))->put('', $file, 'public');

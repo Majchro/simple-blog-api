@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Http\Resources\PostResource;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Contracts\Pagination\Paginator;
@@ -12,8 +13,7 @@ class PostRepository extends Repository
 
     public function __construct(private AttachmentRepository $attachment_repository)
     {
-        $model = app()->make(Post::class);
-        parent::__construct($model);
+        $this->model = app()->make(Post::class);
     }
 
     public function upsert(User $user, string $title, string $content, ?array $attachments = [], ?int $id = null): Post
@@ -39,7 +39,8 @@ class PostRepository extends Repository
 
     public function getPaginated(): Paginator
     {
-        return Post::with(['attachments'])
-            ->simplePaginate(self::POSTS_PER_PAGE);
+        return Post::with(['user', 'attachments'])
+            ->simplePaginate(self::POSTS_PER_PAGE)
+            ->through(fn (Post $post) => new PostResource($post));
     }
 }

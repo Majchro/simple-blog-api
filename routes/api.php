@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
-Route::middleware('guest')->name('auth.')->group(function () {
+Route::middleware('guest')->prefix('auth')->name('auth.')->group(function () {
     Route::post('login', [AuthenticatedSessionController::class, 'store'])->name('login');
     Route::post('register', [RegisterUserController::class, 'store'])->name('register');
     Route::post('forgot-password', [PasswordResetLinkController::class, 'store'])->name('forgot-password');
@@ -30,4 +30,5 @@ Route::middleware('auth', 'can:access-to-editor-panel')->name('editor.')->group(
     Route::apiResource('posts', PostController::class);
     Route::apiResource('attachments', AttachmentController::class)->only('destroy');
     Route::apiResource('users', UserController::class);
+    Route::put('users/{id}/change-role', [UserController::class, 'changeRole'])->name('users.change-role');
 });

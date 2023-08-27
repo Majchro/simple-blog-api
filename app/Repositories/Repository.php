@@ -6,8 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 abstract class Repository
 {
-    public function __construct(protected Model $model)
-    {}
+    public Model $model;
 
     public function find(int $id): ?Model
     {
