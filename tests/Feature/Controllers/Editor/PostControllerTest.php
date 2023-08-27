@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Enums\UserRole;
 use App\Models\Post;
 use App\Models\User;
@@ -28,7 +30,7 @@ test('[GET] index', function () {
             'data' => [
                 'data',
                 'per_page',
-            ]
+            ],
         ]);
 });
 
@@ -43,7 +45,7 @@ test('[POST] store', function () {
         'attachments' => [
             UploadedFile::fake()->image('image1.png'),
             UploadedFile::fake()->image('image2.jpg'),
-        ]
+        ],
     ])
         ->assertStatus(201);
 });
@@ -60,7 +62,7 @@ test('[GET] show', function () {
                 'id',
                 'title',
                 'content',
-            ]
+            ],
         ]);
 });
 

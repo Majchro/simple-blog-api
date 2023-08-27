@@ -14,7 +14,8 @@ use Illuminate\Http\Response;
 class RegisterUserController extends Controller
 {
     public function __construct(private AuthenticationRepository $authentication_repository)
-    {}
+    {
+    }
 
     public function store(RegisterRequest $request): JsonResponse
     {

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Http\Controllers\Authentication\AuthenticatedSessionController;
 use App\Http\Controllers\Authentication\NewPasswordController;
 use App\Http\Controllers\Authentication\PasswordResetLinkController;

@@ -1,14 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Models\User;
 use App\Repositories\AuthenticationRepository;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Auth\Events\Registered;
+use Illuminate\Auth\Notifications\ResetPassword;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Event;
-use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Notification;
-use Illuminate\Auth\Notifications\ResetPassword;
+use Illuminate\Support\Facades\Password;
 
 beforeEach(function () {
     $this->user_repository = new AuthenticationRepository;
@@ -35,6 +37,7 @@ describe('resetPassword', function () {
     function createUserWithToken(): array
     {
         $user = User::factory()->create();
+
         return [
             'user' => $user,
             'token' => Password::createToken($user),
@@ -95,4 +98,3 @@ describe('sendResetLink', function () {
         Notification::assertNothingSent();
     });
 });
-

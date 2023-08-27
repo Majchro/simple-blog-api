@@ -14,7 +14,8 @@ use Illuminate\Http\Response;
 class PasswordResetLinkController extends Controller
 {
     public function __construct(private AuthenticationRepository $authentication_repository)
-    {}
+    {
+    }
 
     public function store(PasswordResetRequest $request): JsonResponse
     {

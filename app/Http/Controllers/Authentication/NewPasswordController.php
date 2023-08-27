@@ -14,7 +14,8 @@ use Illuminate\Http\Response;
 class NewPasswordController extends Controller
 {
     public function __construct(private AuthenticationRepository $authentication_repository)
-    {}
+    {
+    }
 
     public function update(NewPasswordRequest $request): JsonResponse
     {

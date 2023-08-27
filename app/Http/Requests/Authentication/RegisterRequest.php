@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Requests\Authentication;
 
 use App\Models\User;
@@ -17,7 +19,7 @@ class RegisterRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'min:3', 'max:15'],
-            'email' => ['required', 'string', 'email', 'unique:' . User::class],
+            'email' => ['required', 'string', 'email', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Password::defaults()],
         ];
     }

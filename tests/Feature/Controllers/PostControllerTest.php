@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Models\Post;
 use App\Models\User;
 use App\Repositories\PostRepository;
@@ -23,6 +25,6 @@ test('[GET] index', function () {
             'data' => [
                 'data',
                 'per_page',
-            ]
+            ],
         ]);
 });

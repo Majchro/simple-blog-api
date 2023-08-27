@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Repositories;
 
 use App\Http\Resources\PostResource;
@@ -16,7 +18,7 @@ class PostRepository extends Repository
         $this->model = app()->make(Post::class);
     }
 
-    public function upsert(User $user, string $title, string $content, ?array $attachments = [], ?int $id = null): Post
+    public function upsert(User $user, string $title, string $content, ?array $attachments = [], int $id = null): Post
     {
         $post = $user->posts()->updateOrCreate([
             'id' => $id,

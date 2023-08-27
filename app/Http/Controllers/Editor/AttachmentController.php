@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Editor;
 
 use App\Enums\ApiResponseStatus;
@@ -10,7 +12,8 @@ use Illuminate\Http\JsonResponse;
 class AttachmentController extends Controller
 {
     public function __construct(private AttachmentRepository $attachment_repository)
-    {}
+    {
+    }
 
     public function destroy(int $id): JsonResponse
     {

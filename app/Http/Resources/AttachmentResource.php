@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Resources;
 
 use Illuminate\Http\Request;
@@ -17,11 +19,11 @@ class AttachmentResource extends JsonResource
         ];
     }
 
-    private function formatSize($size, $precision = 2)
+    private function formatSize(int $size, int $precision = 2)
     {
         $base = log($size, 1024);
-        $suffixes = array('', 'KB', 'MB', 'GB', 'TB');
+        $suffixes = ['', 'KB', 'MB', 'GB', 'TB'];
 
-        return round(pow(1024, $base - floor($base)), $precision) . ' ' . $suffixes[floor($base)];
+        return round(pow(1024, $base - floor($base)), $precision).' '.$suffixes[floor($base)];
     }
 }

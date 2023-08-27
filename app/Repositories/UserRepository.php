@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Repositories;
 
 use App\Enums\UserRole;
@@ -17,7 +19,7 @@ class UserRepository extends Repository
         $this->model = app()->make(User::class);
     }
 
-    public function upsert(string $name, string $email, string $password, ?UserRole $role = UserRole::Subscriber, ?int $id = null): User
+    public function upsert(string $name, string $email, string $password, ?UserRole $role = UserRole::Subscriber, int $id = null): User
     {
         $user = User::updateOrCreate([
             'id' => $id,

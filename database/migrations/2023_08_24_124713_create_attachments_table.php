@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -14,7 +16,7 @@ return new class extends Migration
             $table->nullableMorphs('connection');
             $table->string('filename');
             $table->string('content_type');
-            $table->string('byte_size');
+            $table->bigInteger('byte_size');
             $table->string('path');
             $table->timestamps();
         });

@@ -1,10 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Enums\UserRole;
 use App\Models\Post;
 use App\Models\User;
 use App\Repositories\UserRepository;
-use Illuminate\Http\UploadedFile;
 use Mockery\MockInterface;
 
 beforeEach(function () {
@@ -27,7 +28,7 @@ test('[GET] index', function () {
             'data' => [
                 'data',
                 'per_page',
-            ]
+            ],
         ]);
 });
 
@@ -57,7 +58,7 @@ test('[GET] show', function () {
                 'id',
                 'name',
                 'email',
-            ]
+            ],
         ]);
 });
 
@@ -70,7 +71,7 @@ test('[PUT] update', function () {
     $this->putJson(route('editor.users.update', $this->user->id), [
         'name' => fake()->firstName(),
         'email' => fake()->safeEmail(),
-        'password' => 'zaq1@WSX'
+        'password' => 'zaq1@WSX',
     ])
         ->assertStatus(200);
 });

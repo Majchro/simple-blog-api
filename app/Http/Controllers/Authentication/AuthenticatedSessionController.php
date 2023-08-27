@@ -14,7 +14,8 @@ use Illuminate\Http\Response;
 class AuthenticatedSessionController extends Controller
 {
     public function __construct(private AuthenticationRepository $authentication_repository)
-    {}
+    {
+    }
 
     public function store(LoginRequest $request): JsonResponse
     {
@@ -34,7 +35,7 @@ class AuthenticatedSessionController extends Controller
             'data' => [
                 'id' => $user->id,
                 'name' => $user->name,
-            ]
+            ],
         ]);
     }
 }

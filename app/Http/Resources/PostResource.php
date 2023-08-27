@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Resources;
 
 use Illuminate\Http\Request;
@@ -14,7 +16,7 @@ class PostResource extends JsonResource
             'title' => $this->title,
             'content' => $this->content,
             'user' => new UserResource($this->whenLoaded('user')),
-            'attachments' => AttachmentResource::collection($this->whenLoaded('attachments'))
+            'attachments' => AttachmentResource::collection($this->whenLoaded('attachments')),
         ];
     }
 }

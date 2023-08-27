@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Editor;
 
 use App\Enums\ApiResponseStatus;
@@ -13,7 +15,8 @@ use Illuminate\Http\Response;
 class PostController extends Controller
 {
     public function __construct(private PostRepository $post_repository)
-    {}
+    {
+    }
 
     public function index(): JsonResponse
     {

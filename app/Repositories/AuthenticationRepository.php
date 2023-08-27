@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Repositories;
 
 use App\Enums\UserRole;
@@ -49,6 +51,7 @@ class AuthenticationRepository
         }
 
         session()->regenerate();
+
         return Auth::user();
     }
 
